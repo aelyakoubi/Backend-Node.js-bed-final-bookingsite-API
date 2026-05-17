@@ -1,12 +1,12 @@
-import { PrismaClient } from "@prisma/client";
-import amenitiesData from "../src/data/amenities.json" assert { type: "json" };
-import bookingsData from "../src/data/bookings.json" assert { type: "json" };
-import hostsData from "../src/data/hosts.json" assert { type: "json" };
-import propertiesData from "../src/data/properties.json" assert { type: "json" };
-import reviewsData from "../src/data/reviews.json" assert { type: "json" };
-import usersData from "../src/data/users.json" assert { type: "json" };
+import { PrismaClient } from '@prisma/client';
+import amenitiesData from '../src/data/amenities.json' with { type: 'json' };
+import bookingsData from '../src/data/bookings.json' with { type: 'json' };
+import hostsData from '../src/data/hosts.json' with { type: 'json' };
+import propertiesData from '../src/data/properties.json' with { type: 'json' };
+import reviewsData from '../src/data/reviews.json' with { type: 'json' };
+import usersData from '../src/data/users.json' with { type: 'json' };
 
-const prisma = new PrismaClient({ log: ["query", "info", "warn", "error"] });
+const prisma = new PrismaClient({ log: ['query', 'info', 'warn', 'error'] });
 
 async function main() {
   try {
@@ -23,12 +23,12 @@ async function main() {
         update: {},
         create: {
           id: user.id,
-          username: user.username || "",
-          password: user.password || "",
-          name: user.name || "",
-          email: user.email || "",
-          phoneNumber: user.phoneNumber || "",
-          profilePicture: user.profilePicture || "",
+          username: user.username || '',
+          password: user.password || '',
+          name: user.name || '',
+          email: user.email || '',
+          phoneNumber: user.phoneNumber || '',
+          profilePicture: user.profilePicture || '',
         },
       });
     }
@@ -39,13 +39,13 @@ async function main() {
         update: {},
         create: {
           id: host.id,
-          username: host.username || "",
-          password: host.password || "",
-          name: host.name || "",
-          email: host.email || "",
-          phoneNumber: host.phoneNumber || "",
-          profilePicture: host.profilePicture || "",
-          aboutMe: host.aboutMe || "",
+          username: host.username || '',
+          password: host.password || '',
+          name: host.name || '',
+          email: host.email || '',
+          phoneNumber: host.phoneNumber || '',
+          profilePicture: host.profilePicture || '',
+          aboutMe: host.aboutMe || '',
         },
       });
     }
@@ -56,10 +56,10 @@ async function main() {
         update: {},
         create: {
           id: property.id,
-          hostId: property.hostId || "",
-          title: property.title || "",
-          description: property.description || "",
-          location: property.location || "",
+          hostId: property.hostId || '',
+          title: property.title || '',
+          description: property.description || '',
+          location: property.location || '',
           pricePerNight: property.pricePerNight || 0,
           bedroomCount: property.bedroomCount || 0,
           bathRoomCount: property.bathRoomCount || 0,
@@ -75,7 +75,7 @@ async function main() {
         update: {},
         create: {
           id: amenity.id,
-          name: amenity.name || "",
+          name: amenity.name || '',
         },
       });
     }
@@ -87,7 +87,7 @@ async function main() {
         create: {
           id: review.id,
           rating: review.rating || null,
-          comment: review.comment || "",
+          comment: review.comment || '',
           user: {
             connect: { id: review.userId },
           },
@@ -108,7 +108,7 @@ async function main() {
           checkoutDate: booking.checkoutDate || new Date(),
           numberOfGuests: booking.numberOfGuests || 0,
           totalPrice: booking.totalPrice || 0,
-          bookingStatus: booking.bookingStatus || "",
+          bookingStatus: booking.bookingStatus || '',
           user: {
             connect: { id: booking.userId },
           },
@@ -120,7 +120,7 @@ async function main() {
     }
   } catch (error) {
     console.error(error);
-    throw new Error("Failed to execute seed script.");
+    throw new Error('Failed to execute seed script.');
   } finally {
     await prisma.$disconnect();
   }
